@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -6,4 +7,4 @@ from django.shortcuts import render
 def index(request):
 
     # 在试图函数中进行响应
-    return HttpResponse('helasjkldgjl!!!...')
+    return HttpResponse('试图函数执行的结果')

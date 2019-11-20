@@ -20,7 +20,7 @@
     <option name="runTestServer" value="false" />
     <option name="runNoReload" value="false" />
     <option name="useCustomRunCommand" value="false" />
-    <option name="customRunCommand" value="" />
+    <option name="customRunCommand" value="runserver 0:8000" />
     <method v="2" />
   </configuration>
 </component>
