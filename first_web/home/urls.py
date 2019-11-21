@@ -22,4 +22,6 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'^abc/$', views.abc),
     url(r'^demo/$', views.demo),
+    url(r'^article/(\d)$', views.article),
+    url(r'^article/(?P<aa>)$', views.article2),
 ]

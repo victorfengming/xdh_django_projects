@@ -19,3 +19,10 @@ def demo(request):
     data = {'info':cont}
 
     return render(request,'a.html',data)
+
+def article(request,para):
+    return HttpResponse('接受到的参数是:'+para)
+
+def article2(request,aa):
+
+    return HttpResponse('接受到的参数是2是:'+aa)
