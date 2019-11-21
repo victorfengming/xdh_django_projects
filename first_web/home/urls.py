@@ -20,4 +20,6 @@ from home import views
 
 urlpatterns = [
     url(r'^$', views.index),
+    url(r'^abc/$', views.abc),
+    url(r'^demo/$', views.demo),
 ]
