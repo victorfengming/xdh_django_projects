@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from django.shortcuts import render
 
 # Create your views here.
@@ -26,3 +26,8 @@ def article(request,para):
 def article2(request,aa):
 
     return HttpResponse('接受到的参数是2是:'+aa)
+
+def user_index(request,page=1):
+    print(page)
+    # return HttpResponse('用户列表数据的显示'+page)
+    raise Http404('纳尼@_@')
