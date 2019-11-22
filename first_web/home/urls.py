@@ -25,5 +25,5 @@ urlpatterns = [
     url(r'^article/(\d)$', views.article),
     url(r'^article/(?P<aa>)$', views.article2),
     url(r'^user/index/(?P<page>[0-9]+)/$', views.user_index),
-    url(r'^user/index/$', views.user_index),
+    url(r'^user/index/$', views.user_index,name="user_index"),
 ]
