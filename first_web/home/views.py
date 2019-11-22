@@ -1,6 +1,6 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
-
+from . import models
 # Create your views here.
 
 # 创建一个试图函数,输出Helloween
@@ -30,3 +30,13 @@ def user_index(request,page=1):
     print(page)
     return HttpResponse('用户列表数据的显示')
     # raise Http404('纳尼@_@')
+
+def mod_demo(request):
+    # 使用模型进行操作数据库 数据的查询操作
+    res = models.Users.objects.all()
+    print(res)
+    # < QuerySet[ < Users: Users object >] >
+    # 一个查询集
+    for x in res:
+        print(x.username)
+    return HttpResponse('模型你给的操作演示')

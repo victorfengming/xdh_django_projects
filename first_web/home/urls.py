@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^article/(?P<aa>)$', views.article2),
     url(r'^user/index/(?P<page>[0-9]+)/$', views.user_index),
     url(r'^user/index/$', views.user_index,name="user_index"),
+    url(r'^mod/demo/$', views.mod_demo,name="mod_demo"),
 ]
