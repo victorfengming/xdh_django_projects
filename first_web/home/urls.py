@@ -20,11 +20,13 @@ from home import views
 
 urlpatterns = [
     url(r'^$', views.index),
-    url(r'^abc/$', views.abc),
-    url(r'^demo/$', views.demo),
-    url(r'^article/(\d)$', views.article),
-    url(r'^article/(?P<aa>)$', views.article2),
     url(r'^user/index/(?P<page>[0-9]+)/$', views.user_index),
     url(r'^user/index/$', views.user_index,name="user_index"),
     url(r'^mod/demo/$', views.mod_demo,name="mod_demo"),
+
+    # 用户数据的管理
+    url(r'stu/index$',views.stu_index,name='stu_index'),
+    url(r'stu/insert$',views.stu_insert,name='stu_insert'),
+    url(r'stu/add$',views.stu_add,name='stu_add'),
+
 ]
