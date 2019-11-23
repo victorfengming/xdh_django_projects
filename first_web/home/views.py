@@ -94,8 +94,34 @@ def stu_del(request):
     return HttpResponse('<script> alert("删除成功!"); location.href = "'+reverse('stu_index')+'";</script>')
 
 
+# 用户数据的编辑
+def stu_edit(request):
+    # 获取用户id
+    uid = request.GET.get('uid')
+    # 根据id 获取用户对象
+    ob = models.Stu.objects.get(sid=uid)
+    # 吧用户数据显示到编辑的表单中
+    content = {'uinfo':ob}
+    # 加载模板
+    return render(request,'stu/edit.html',content)
 
 
-
-
-
+def stu_update(request):
+    # 获取表单数据
+    data = request.POST.dict()
+    data.pop('csrfmiddlewaretoken')
+    # 接收id
+    uid = request.GET.get('uid')
+    # 根据id获取对象
+    ob = models.Stu.objects.get(sid=uid)
+    # 修改对象的属性
+    ob.name = request.POST.get('name')
+    print('-'*80)
+    print(ob.name)
+    print('-'*80)
+    ob.email = request.POST.get('email')
+    ob.age = request.POST.get('age')
+    # 执行修改
+    ob.save()
+    # 跳转到列表页面
+    return HttpResponse('<script> alert("更新成功!"); location.href = "' + reverse('stu_index') + '";</script>')

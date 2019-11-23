@@ -21,6 +21,7 @@
             <td>{{ v.name }}</td>
             <td>{{ v.email }}</td>
             <td>{{ v.age }}</td>
+            <td><a href="{% url 'stu_edit' %}?uid={{ v.sid }}">编辑</a></td>
             <td><a href="{% url 'stu_del' %}?uid={{ v.sid }}">删除</a></td>
         </tr>
         {% endfor %}

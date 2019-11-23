@@ -18,6 +18,10 @@ from django.contrib import admin
 
 from home import views
 
+
+
+
+
 urlpatterns = [
     url(r'^$', views.index),
     url(r'^user/index/(?P<page>[0-9]+)/$', views.user_index),
@@ -32,5 +36,9 @@ urlpatterns = [
     url(r'stu/add$',views.stu_add,name='stu_add'),
     # 执行用户的删除
     url(r'stu/del$',views.stu_del,name='stu_del'),
+    # 用户的编辑表单
+    url(r'stu/edit$',views.stu_edit,name='stu_edit'),
+    # 执行用户数据的更新
+    url(r'stu/update$',views.stu_update,name='stu_update'),
 
 ]
