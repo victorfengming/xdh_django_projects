@@ -1,5 +1,7 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
+from django.urls import reverse
+
 from . import models
 # Create your views here.
 
@@ -57,6 +59,7 @@ def stu_add(request):
     # 显示一个添加的页面
     return render(request,'stu/add.html')
 
+# 执行用户的添加
 def stu_insert(request):
 
     # 接收用户发送的表单数据
@@ -72,10 +75,23 @@ def stu_insert(request):
     # 添加到数据库
     # 返回到列表页
 
-    return HttpResponse('<script> alert("添加成功!"); location.href = "/stu/index";</script>')
+    # return HttpResponse('<script> alert("添加成功!"); location.href = "/stu/index";</script>')
+    # 在python代码中不能{% 这样写了 %},所以应该这样
+    return HttpResponse('<script> alert("添加成功!"); location.href = "'+reverse('stu_index')+'";</script>')
 
 
-
+# 执行用户的删除
+def stu_del(request):
+    print('uid是')
+    # 接收id对象
+    uid = request.GET.get('uid')
+    print(uid)
+    # 获取用户对象
+    ob = models.Stu.objects.get(sid=uid)
+    # 执行删除
+    ob.delete()
+    # 跳转到列表页面
+    return HttpResponse('<script> alert("删除成功!"); location.href = "'+reverse('stu_index')+'";</script>')
 
 
 

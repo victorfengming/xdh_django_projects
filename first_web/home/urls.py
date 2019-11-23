@@ -26,7 +26,11 @@ urlpatterns = [
 
     # 用户数据的管理
     url(r'stu/index$',views.stu_index,name='stu_index'),
+    # 执行用户的添加
     url(r'stu/insert$',views.stu_insert,name='stu_insert'),
+    # 显示添加的表单
     url(r'stu/add$',views.stu_add,name='stu_add'),
+    # 执行用户的删除
+    url(r'stu/del$',views.stu_del,name='stu_del'),
 
 ]
