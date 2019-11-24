@@ -24,22 +24,9 @@ from home import views
 
 urlpatterns = [
     url(r'^$', views.index),
-    url(r'^user/index/(?P<page>[0-9]+)/$', views.user_index),
-    url(r'^user/index/$', views.user_index,name="user_index"),
-    url(r'^mod/demo/$', views.mod_demo,name="mod_demo"),
-    url(r'^demo/$', views.demo,name="demo"),
 
-    # 用户数据的管理
-    url(r'stu/index$',views.stu_index,name='stu_index'),
-    # 执行用户的添加
-    url(r'stu/insert$',views.stu_insert,name='stu_insert'),
-    # 显示添加的表单
-    url(r'stu/add$',views.stu_add,name='stu_add'),
-    # 执行用户的删除
-    url(r'stu/del$',views.stu_del,name='stu_del'),
-    # 用户的编辑表单
-    url(r'stu/edit$',views.stu_edit,name='stu_edit'),
-    # 执行用户数据的更新
-    url(r'stu/update$',views.stu_update,name='stu_update'),
+    url(r'^demo/$', views.demo,name="demo"),
+    #
+    url(r'onetoone$',views.onetoone,name='onetoone'),
 
 ]
