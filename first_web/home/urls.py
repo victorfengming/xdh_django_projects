@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^user/index/(?P<page>[0-9]+)/$', views.user_index),
     url(r'^user/index/$', views.user_index,name="user_index"),
     url(r'^mod/demo/$', views.mod_demo,name="mod_demo"),
+    url(r'^demo/$', views.demo,name="demo"),
 
     # 用户数据的管理
     url(r'stu/index$',views.stu_index,name='stu_index'),

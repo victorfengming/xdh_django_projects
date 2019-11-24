@@ -125,3 +125,47 @@ def stu_update(request):
     ob.save()
     # 跳转到列表页面
     return HttpResponse('<script> alert("更新成功!"); location.href = "' + reverse('stu_index') + '";</script>')
+
+def demo(request):
+    # 查询集方法
+    """
+    all()
+    filter()
+    exclude()
+    order_by()
+    values()：一个对象构成一个字典，然后构成一个列表返回
+    """
+    # 要是查询不到符合条件的结果会返回一个空的查询集
+    data = models.Users.objects.all()
+    data2 = models.Users.objects.filter(sex=0)
+    data3 = models.Users.objects.exclude(username='zhangsan')
+    data4 = models.Users.objects.order_by('id')
+    data5 = models.Users.objects.values()
+    # data6 = models.Users.objects.all().filter(sex=0).exclude(username='zhangsan').order_by('id').values()
+    # print('-'*60)
+    # print(data)
+    # print('-'*60)
+    # print(data2)
+    # print('-'*60)
+    # print(data3)
+    # print('-'*60)
+    # print(data4)
+    # print('-'*60)
+    # print(data5)
+    # print('-'*60)
+    # print(data6)
+    # print('-'*60)
+    '''
+    # 返回单个值的方法 -get 只能返回一个结果
+    get如果查询不到符合条件的数据 则抛出异常 
+    DoesNotExist at /demo 
+    Users matching query does not exist.
+    get 如果查询到多条数据,还是要抛出异常
+    MultipleObjectsReturned at /demo/
+    get() returned more than one Users -- it returned 128!
+    '''
+    data7 = models.Users.objects.get(age=20)
+    print('-'*60)
+    print(data7)
+    print('-'*60)
+    return HttpResponse("模型查询")
