@@ -10,6 +10,12 @@ class Users(models.Model):
     age = models.IntegerField(default=20)
     sex = models.IntegerField()
     addtime = models.DateTimeField(auto_now_add=True)
+
+
+    # 魔术方法:当对该类对象进行字符串操作时会自动触发
+    def __str__(self):
+        return self.username
+
 #
 # class Stu(models.Model):
 #     sid = models.AutoField(primary_key=True)
