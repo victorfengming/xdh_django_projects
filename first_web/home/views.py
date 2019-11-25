@@ -9,9 +9,18 @@ from .models import Users, Stu, StuInfo, ClassInfo, Books, Tags
 
 # 创建一个试图函数,输出Helloween
 def index(request):
-    return render(request, 'abc/b.html')
+    print('-'*80)
+    print(request)
+    print('-'*80)
+    print(request.path)
+    print('-'*80)
+    print(request.GET)
+    print('-'*80)
+    print(request.GET['a'])
+    print('-'*80)
+    # return render(request, 'abc/b.html')
     # 在试图函数中进行响应
-    # return HttpResponse('试图函数执行的结果')
+    return HttpResponse('视图的操作')
 
 
 def demo(request):
