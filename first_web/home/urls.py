@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^$', views.index),
 
     url(r'^demo/$', views.demo,name="demo"),
+    url(r'^viewsdemo/$', views.viewsdemo,name="viewsdemo"),
     #
     url(r'onetoone$',views.onetoone,name='onetoone'),
 

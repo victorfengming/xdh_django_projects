@@ -1,4 +1,4 @@
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseNotFound
 from django.shortcuts import render
 from django.urls import reverse
 
@@ -22,6 +22,9 @@ def index(request):
     # 在试图函数中进行响应
     return HttpResponse('视图的操作')
 
+def viewsdemo(request):
+    # 响应错误
+    return HttpResponseNotFound('<h3>page not found ,do you understand 404</h3>')
 
 def demo(request):
     # 查询集方法
