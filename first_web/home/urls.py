@@ -25,4 +25,6 @@ from home import views
 urlpatterns = [
 
     url(r'^$', views.index,name="cookie_index"),
+
+    url(r'^tmp/demo/$', views.tmp_demo,name="cookie_tmp_demo"),
 ]
