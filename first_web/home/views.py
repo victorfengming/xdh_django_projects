@@ -26,6 +26,7 @@ def viewsdemo(request):
     # 响应错误
     return HttpResponseNotFound('<h3>page not found ,do you understand 404</h3>')
 
+
 def demo(request):
     # 查询集方法
     """
