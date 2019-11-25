@@ -32,6 +32,12 @@ class Users(models.Model):
 class Stu(models.Model):
     sname = models.CharField(max_length=6)
     age = models.IntegerField()
+    # 一对多
+    cid = models.ForeignKey(to="ClassInfo",to_field='id')
+
+    def __str__(self):
+        return '<Stu: '+self.sname+' object>'
+
 
 # 创建学员详情模型
 class StuInfo(models.Model):
@@ -47,3 +53,8 @@ class StuInfo(models.Model):
     # 就是Stu在下面了,就要加上引号了,不然找不到
     # 因为咱们python并没有类或者函数的欲仙加载,毕竟是脚本语言嘛,还想咋地!
     # 那你还能在类定义之前去实例化对象啊, 你不得先定义在用啊
+
+
+class ClassInfo(models.Model):
+    cname = models.CharField(max_length=10)
+    code = models.IntegerField()

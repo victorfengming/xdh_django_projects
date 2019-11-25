@@ -2,7 +2,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.urls import reverse
 
-from . models import Users,Stu,StuInfo
+from . models import Users,Stu,StuInfo,ClassInfo
 # Create your views here.
 
 # 创建一个试图函数,输出Helloween
@@ -72,7 +72,7 @@ def onetoone(request):
     # # 只能选择对象,不能设为对象的id
     # obi.uid = ob
     # obi.save()
-
+    #
     # # 查询
     # ob = Stu.objects.first()
     # print(ob.sname)
@@ -81,7 +81,7 @@ def onetoone(request):
     # print(ob.stuinfo.xueli)
     # # 通过学员 获取学员详情对象
     # print(ob.stuinfo.jiguan)
-
+    #
     # # 通过学员详情,获取学员信息
     # ob = StuInfo.objects.last()
     # print(ob.jiguan)
@@ -90,10 +90,39 @@ def onetoone(request):
     # print(ob.uid.age)
     # # 有外键的一方使用外键
     # # 没有外键的一方,使用类名小写
-
-    # 删除
-    # 删除一个表中的记录,应该同步都删除
+    #
+    # # 删除
+    # # 删除一个表中的记录,应该同步都删除
     # ob = StuInfo.objects.last()
     # ob.delete()
 
     return HttpResponse('演示 一对一模型关系的操作')
+
+
+# 一对多的操作
+def onetomore(request):
+    # # 添加
+    # # 创建班级
+    # ob = ClassInfo(cname='python17',code=707)
+    # ob.save()
+    #
+    # # 创建学员
+    # sob = Stu(sname='王五',age=23,cid=ob)
+    # sob.save()
+
+    # # 查询
+    # # 通过班级,获取当前班级的所有学员
+    # ob = ClassInfo.objects.first()
+    # print(ob.cname)
+    # # ob是当前这个班级
+    # print(ob.stu_set.all())
+    # # 注意 预支关联的模型类名 小写 _set.查询方法
+    # # 这里的stu_set是与其相关联的表名加_加set固定写法
+
+    # 通过学员,获取当前学员所在班级
+    ob = Stu.objects.last()
+    print(ob.sname)
+    print(ob.cid.sname)
+
+
+    return HttpResponse('一对多的操作')

@@ -29,4 +29,6 @@ urlpatterns = [
     #
     url(r'onetoone$',views.onetoone,name='onetoone'),
 
+    url(r'onetomore$',views.onetomore,name='onetomore'),
+
 ]
