@@ -31,4 +31,7 @@ urlpatterns = [
 
     url(r'onetomore$',views.onetomore,name='onetomore'),
 
+    url(r'manytomany$',views.manytomany,name='manytomany'),
+
+
 ]

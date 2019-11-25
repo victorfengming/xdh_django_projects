@@ -58,3 +58,19 @@ class StuInfo(models.Model):
 class ClassInfo(models.Model):
     cname = models.CharField(max_length=10)
     code = models.IntegerField()
+
+# 书籍
+class Books(models.Model):
+    title = models.CharField(max_length=50)
+    author = models.CharField(max_length=50)
+
+
+# 标签
+class Tags(models.Model):
+    name = models.CharField(max_length=10)
+    # 多对多定义
+    bid = models.ManyToManyField(to="Books")
+
+    # 定义一个魔术方法
+    def  __str__(self):
+        return '<Tags: '+self.name +' Object>'

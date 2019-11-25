@@ -2,12 +2,14 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render
 from django.urls import reverse
 
-from . models import Users,Stu,StuInfo,ClassInfo
+from .models import Users, Stu, StuInfo, ClassInfo, Books, Tags
+
+
 # Create your views here.
 
 # 创建一个试图函数,输出Helloween
 def index(request):
-    return render(request,'abc/b.html')
+    return render(request, 'abc/b.html')
     # 在试图函数中进行响应
     # return HttpResponse('试图函数执行的结果')
 
@@ -51,15 +53,14 @@ def demo(request):
     get() returned more than one Users -- it returned 128!
     '''
     data7 = Users.objects.get(age=20)
-    print('-'*60)
+    print('-' * 60)
     print(data7)
-    print('-'*60)
+    print('-' * 60)
     return HttpResponse("模型查询")
 
 
 # 创建视图函数 演示一对一模型关系的操作
 def onetoone(request):
-
     # # 添加
     # # 创建学员信息
     # ob = Stu(sname='李四',age=24)
@@ -124,5 +125,52 @@ def onetomore(request):
     print(ob.sname)
     print(ob.cid.sname)
 
-
     return HttpResponse('一对多的操作')
+
+
+# 多对多的操作
+def manytomany(request):
+    # # 添加
+    # # 创建书籍
+    # b1 = Books(title='<<Python3.7从零开始学>>', author="刘宇宙")
+    # b2 = Books(title='<<跟兄弟连学PHP>>', author="高洛峰")
+    # b1.save()
+    # b2.save()
+    # # 给书籍添加标签
+    # t1 = Tags(name='Python')
+    # t3 = Tags(name='PHP')
+    # t2 = Tags(name="计算机编程")
+    #
+    #
+    # # 添加之前就可保存了
+    # t1.save()
+    # t2.save()
+    # t3.save()
+    #
+    #
+    # # 给书籍添加标签
+    # t1.bid.add(b1)
+    # t2.bid.add(b1)
+    # t2.bid.add(b2)
+    # t3.bid.add(b2)
+
+    # # 查询
+    # # 通过书 获取当前书下的所有标签
+    # b = Books.objects.first()
+    # print(b.title)
+    # print(b.author)
+    # print(b.tags_set.all())
+    # # 通过标签，获取当前标签下的所有书
+
+
+    # 通过标签,获取当前标签下的所有书
+    t = Tags.objects.get(id=2)
+    print(t.name)
+    # 注意,在使用有外键的模型进行相关查询是,使用外键属性即可
+    print(t.bid.all())
+    # 如果删除关系中的任何一暑假,对另外一个表数据不产生任何影响,但是会删除对应的关系数据
+    b = Books.objects.first()
+    b.delete()
+
+
+    return HttpResponse('多对多的操作')
