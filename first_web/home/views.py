@@ -1,197 +1,66 @@
-from django.http import HttpResponse, Http404, HttpResponseNotFound
+from django.http import HttpResponse, Http404, HttpResponseNotFound, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse
 
 from .models import Users, Stu, StuInfo, ClassInfo, Books, Tags
 
 
-# Create your views here.
-
-# 创建一个试图函数,输出Helloween
 def index(request):
-    print('-'*80)
-    print(request)
-    print('-'*80)
-    print(request.path)
-    print('-'*80)
-    print(request.GET)
-    print('-'*80)
-    print(request.GET['a'])
-    print('-'*80)
-    # return render(request, 'abc/b.html')
-    # 在试图函数中进行响应
-    return HttpResponse('视图的操作')
-
-def viewsdemo(request):
-    # 响应错误
-    return HttpResponseNotFound('<h3>page not found ,do you understand 404</h3>')
-
-def form(request):
-    if request.method == 'GET':
-        # 加载一个表单模板
-        return render(request,'form.html')
-    else:
-        # 接收表单数据
-        data = request.POST
-        print(data)
-        return HttpResponse("接收表单数据")
-def demo(request):
-    # 查询集方法
-    """
-    all()
-    filter()
-    exclude()
-    order_by()
-    values()：一个对象构成一个字典，然后构成一个列表返回
-    """
-    # 要是查询不到符合条件的结果会返回一个空的查询集
-    data = Users.objects.all()
-    data2 = Users.objects.filter(sex=0)
-    data3 = Users.objects.exclude(username='zhangsan')
-    data4 = Users.objects.order_by('id')
-    data5 = Users.objects.values()
-    # data6 = models.Users.objects.all().filter(sex=0).exclude(username='zhangsan').order_by('id').values()
-    # print('-'*60)
-    # print(data)
-    # print('-'*60)
-    # print(data2)
-    # print('-'*60)
-    # print(data3)
-    # print('-'*60)
-    # print(data4)
-    # print('-'*60)
-    # print(data5)
-    # print('-'*60)
-    # print(data6)
-    # print('-'*60)
-    '''
-    # 返回单个值的方法 -get 只能返回一个结果
-    get如果查询不到符合条件的数据 则抛出异常 
-    DoesNotExist at /demo 
-    Users matching query does not exist.
-    get 如果查询到多条数据,还是要抛出异常
-    MultipleObjectsReturned at /demo/
-    get() returned more than one Users -- it returned 128!
-    '''
-    data7 = Users.objects.get(age=20)
-    print('-' * 60)
-    print(data7)
-    print('-' * 60)
-    return HttpResponse("模型查询")
+    data = {
+        'name':'zhansan',
+        'age':20,
+        'sex':'男'
+    }
+    # 返回json数据
+    return JsonResponse(data)
 
 
-# 创建视图函数 演示一对一模型关系的操作
-def onetoone(request):
-    # # 添加
-    # # 创建学员信息
-    # ob = Stu(sname='李四',age=24)
-    # ob.save()
-    # # 添加学员详情信息
-    # obi = StuInfo()
-    # obi.jiguan = "山西"
-    # obi.xueli = '大专'
-    # # 注意在给外键添加数据时,
-    # # 只能选择对象,不能设为对象的id
-    # obi.uid = ob
-    # obi.save()
-    #
-    # # 查询
-    # ob = Stu.objects.first()
-    # print(ob.sname)
-    # # 与之关联的模型类全小写就可以了
-    # # ,另一个对象就出来了
-    # print(ob.stuinfo.xueli)
-    # # 通过学员 获取学员详情对象
-    # print(ob.stuinfo.jiguan)
-    #
-    # # 通过学员详情,获取学员信息
-    # ob = StuInfo.objects.last()
-    # print(ob.jiguan)
-    # print(ob.uid)
-    # print(ob.uid.sname)
-    # print(ob.uid.age)
-    # # 有外键的一方使用外键
-    # # 没有外键的一方,使用类名小写
-    #
-    # # 删除
-    # # 删除一个表中的记录,应该同步都删除
-    # ob = StuInfo.objects.last()
-    # ob.delete()
-
-    return HttpResponse('演示 一对一模型关系的操作')
+# 设置 cookie
+def cookie_set(request):
+    # 设置 cookie
+    # 1. 先获取响应对象
+    res = HttpResponse()
+    # 2. 使用响应对象设置cookie
+    res.set_cookie('name',"yichuan")
+    # 3.返回响应对象
+    return res
 
 
-# 一对多的操作
-def onetomore(request):
-    # # 添加
-    # # 创建班级
-    # ob = ClassInfo(cname='python17',code=707)
-    # ob.save()
-    #
-    # # 创建学员
-    # sob = Stu(sname='王五',age=23,cid=ob)
-    # sob.save()
+#
+def cookie_get(request):
+    # 在请求对象中或区域cookie信息
+    data = request.COOKIES.get('name')
+    print(data)
 
-    # # 查询
-    # # 通过班级,获取当前班级的所有学员
-    # ob = ClassInfo.objects.first()
-    # print(ob.cname)
-    # # ob是当前这个班级
-    # print(ob.stu_set.all())
-    # # 注意 预支关联的模型类名 小写 _set.查询方法
-    # # 这里的stu_set是与其相关联的表名加_加set固定写法
+    return HttpResponse('获取cookie')
 
-    # 通过学员,获取当前学员所在班级
-    ob = Stu.objects.last()
-    print(ob.sname)
-    print(ob.cid.sname)
+def session_set(request):
+    # 设置 session
+    request.session['VipUser'] = {
+        'name':'zhangsan',
+        'age':20,
+        'id':101,
+    }
+    request.session['username'] = '张三'
+    request.session['age'] = 18
+    return HttpResponse('session设置')
 
-    return HttpResponse('一对多的操作')
+def session_get(request):
+    # 获取session
+    data1 = request.session.get('VipUser')
+    data2 = request.session.get('username')
+    data3 = request.session.get('age')
+    print(data1,data2,data3)
+    # # 删除指定key
+    # del request.session['username']
+    # 清楚会话的内容,当前内容没了,会话还在
+    # request.session.clear()
 
+    # # 删除会话,把当前会话相关的数据全部删除
+    # request.session.flush()
+    # 这个session比较常用的,比如登录注册
+    # 更或者是用户加入购物车的数据都有可能放到session里面
+    # 比如有的网站你不登录就不能加入购物车,这种网站就是把你购物车的数据放到数据库里面了
+    # 还有一些网站你可以先加入购物车,然后后后登录在买,这就要将购物车的数据放到session里面了
 
-# 多对多的操作
-def manytomany(request):
-    # # 添加
-    # # 创建书籍
-    # b1 = Books(title='<<Python3.7从零开始学>>', author="刘宇宙")
-    # b2 = Books(title='<<跟兄弟连学PHP>>', author="高洛峰")
-    # b1.save()
-    # b2.save()
-    # # 给书籍添加标签
-    # t1 = Tags(name='Python')
-    # t3 = Tags(name='PHP')
-    # t2 = Tags(name="计算机编程")
-    #
-    #
-    # # 添加之前就可保存了
-    # t1.save()
-    # t2.save()
-    # t3.save()
-    #
-    #
-    # # 给书籍添加标签
-    # t1.bid.add(b1)
-    # t2.bid.add(b1)
-    # t2.bid.add(b2)
-    # t3.bid.add(b2)
-
-    # # 查询
-    # # 通过书 获取当前书下的所有标签
-    # b = Books.objects.first()
-    # print(b.title)
-    # print(b.author)
-    # print(b.tags_set.all())
-    # # 通过标签，获取当前标签下的所有书
-
-
-    # 通过标签,获取当前标签下的所有书
-    t = Tags.objects.get(id=2)
-    print(t.name)
-    # 注意,在使用有外键的模型进行相关查询是,使用外键属性即可
-    print(t.bid.all())
-    # 如果删除关系中的任何一暑假,对另外一个表数据不产生任何影响,但是会删除对应的关系数据
-    b = Books.objects.first()
-    b.delete()
-
-
-    return HttpResponse('多对多的操作')
+    return HttpResponse('session获取')

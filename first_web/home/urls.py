@@ -23,19 +23,12 @@ from home import views
 
 
 urlpatterns = [
-    url(r'^$', views.index),
 
-    url(r'^demo/$', views.demo,name="demo"),
+    url(r'^$', views.index,name="cookie_index"),
+    url(r'^cookie/set/$', views.cookie_set,name="cookie_set"),
+    url(r'^cookie/get/$', views.cookie_get,name="cookie_get"),
 
-    url(r'^viewsdemo/$', views.viewsdemo,name="viewsdemo"),
-
-    url(r'^form/$', views.form,name="form"),
-    #
-    url(r'onetoone$',views.onetoone,name='onetoone'),
-
-    url(r'onetomore$',views.onetomore,name='onetomore'),
-
-    url(r'manytomany$',views.manytomany,name='manytomany'),
-
+    url(r'^session/set/$', views.session_set,name="session_set"),
+    url(r'^session/get/$', views.session_get,name="session_get"),
 
 ]
