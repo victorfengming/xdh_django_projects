@@ -26,7 +26,15 @@ def viewsdemo(request):
     # 响应错误
     return HttpResponseNotFound('<h3>page not found ,do you understand 404</h3>')
 
-
+def form(request):
+    if request.method == 'GET':
+        # 加载一个表单模板
+        return render(request,'form.html')
+    else:
+        # 接收表单数据
+        data = request.POST
+        print(data)
+        return HttpResponse("接收表单数据")
 def demo(request):
     # 查询集方法
     """

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表单</title>
+</head>
+<body>
+<form action="" method="post">
+    {% csrf_token %}
+    用户名: <input type="text" name="username"><br>
+    密码: <input type="password" name="password"><br>
+    邮箱: <input type="text" name="email"><br>
+    年龄: <input type="text" name="age"><br>
+    性别: <label><input type="radio" name="sex" value="0">女</label>
+    <label><input type="radio" name="sex" value="0">男</label>
+    <br>
+    爱好: <label><input type="checkbox" name="hobby" value="0">抽烟</label>
+    <label><input type="checkbox" name="hobby" value="1">喝酒</label>
+    <label><input type="checkbox" name="hobby" value="2">烫头</label>
+    <br>
+    <button>提交</button>
+</form>
+</body>
+</html>
