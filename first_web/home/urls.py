@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from home import views
+from home import views, viewsUtil
 
 
 
@@ -25,6 +25,6 @@ from home import views
 urlpatterns = [
 
     url(r'^$', views.index,name="cookie_index"),
-
+    url(r'^verifycode/$', viewsUtil.verifycode),
     url(r'^tmp/demo/$', views.tmp_demo,name="cookie_tmp_demo"),
 ]
