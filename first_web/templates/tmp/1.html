@@ -8,16 +8,24 @@
     <title>模板文件</title>
 </head>
 <body>
-<ul>
-    <!--
+<div>
+    {% include 'tmp/header.html' %}
+</div>
+<div>
+    <ul>
+        <!--
 {#        模板引擎的边界符{{  }}#}
     -->
-    <li>输出变量 {{ var }}</li>
-{#    没有也不会报错#}
-    <li>输出列表 {{ arr }}</li>
-{#    <li>列表第二个 {{ arr[2] }}</li>#}
-    <li>列表第二个 {{ arr.2 }}</li>
-{#    html中的注释不能注释掉模板引擎的内容#}
-</ul>
+        <li>输出变量 {{ var }}</li>
+        {#    没有也不会报错#}
+        <li>输出列表 {{ arr }}</li>
+        {#    <li>列表第二个 {{ arr[2] }}</li>#}
+        <li>列表第二个 {{ arr.2 }}</li>
+        {#    html中的注释不能注释掉模板引擎的内容#}
+    </ul>
+</div>
+<div>
+    {% include 'tmp/footer.html' %}
+</div>
 </body>
 </html>
