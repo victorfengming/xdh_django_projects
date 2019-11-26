@@ -29,6 +29,8 @@
         <li>过滤器的使用: 链式使用{{ var | upper |lower}}</li>
         <li>过滤器的使用: {{ con | safe }}</li>
         <li>模板的运算: {{ value | add:3 }}</li>
+        {%  load diytags %}
+        <li>自定义过滤器转大写:{{ var|yc_upper }}</li>
     </ul>
 </div>
 <div>
