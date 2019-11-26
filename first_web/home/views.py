@@ -14,5 +14,6 @@ def tmp_demo(request):
         'var':"I love you",
         'arr':['aa','bb','btb','xcc','3bb'],
         'con':"<h1>知乎</h1>",
+        'value':6
     }
     return render(request,'tmp/1.html',content)
