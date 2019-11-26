@@ -12,6 +12,7 @@ def tmp_demo(request):
     # 分配数据
     content = {
         'var':"I love you",
-        'arr':['aa','bb','btb','xcc','3bb']
+        'arr':['aa','bb','btb','xcc','3bb'],
+        'con':"<h1>知乎</h1>",
     }
     return render(request,'tmp/1.html',content)

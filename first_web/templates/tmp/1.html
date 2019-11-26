@@ -22,6 +22,12 @@
         {#    <li>列表第二个 {{ arr[2] }}</li>#}
         <li>列表第二个 {{ arr.2 }}</li>
         {#    html中的注释不能注释掉模板引擎的内容#}
+        {% comment %}
+        多行注释
+        {% endcomment %}
+        <li>过滤器的使用: 转小写{{ var | upper }}</li>
+        <li>过滤器的使用: 链式使用{{ var | upper |lower}}</li>
+        <li>过滤器的使用: {{ con | safe }}</li>
     </ul>
 </div>
 <div>
