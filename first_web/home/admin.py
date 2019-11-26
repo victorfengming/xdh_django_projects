@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Users
+
 
 
 # Register your models here.
@@ -27,5 +27,3 @@ class UsersAdmin(admin.ModelAdmin):
 
     # # 详细的时间分层筛选
     date_hierarchy = 'addtime'
-# 导入模型类
-admin.site.register(Users, UsersAdmin)

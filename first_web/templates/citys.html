@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>城市联动</title>
+</head>
+<body>
+<select name="" id="">
+    <option value="">--请选择</option>
+    {% for v in data %}
+        <option value="{{ v.id }}">{{ v.name }}</option>
+    {% endfor %}
+</select>
+{## 导入jQuery#}
+<script type="text/javascript" src="/static/jquery-1.8.3.min.js"></script>
+<script>
+    // 第一步 获取选框 绑定change时间
+    // 这个绑定事件绑定不了动态加载的元素
+    {#$('select').change(function () {#}
+    // 所以我们不用这个了,我们用一个或者的方法
+    //
+    $('select').live('change',function () {
+        // 获取当前选中的城市id
+        var cid = $(this).val();
+        // 发送ajax
+        {#$.get('/get/city/',);#}
+
+        $.get('{% url "get_city" %}',{'cid':cid},function (data) {
+            console.log(data);
+            // 动态创建下拉选框
+            // 这叫创建标签
+            var sel = $('<select></select>');
+            // 定义选项
+            var ops = '<option>--请选择--</option>';
+            for (var i = 0; i < data.length; i++) {
+                ops += '<option value="'+data[i].id+'">'+data[i].name+'</option>';
+            }
+
+            // 吧定义的选项设置到下拉框中
+            sel.html(ops);
+            // 吧创建的html添加到页面中
+            $('body').append(sel);
+        },'json')
+    })
+</script>
+</body>
+</html>

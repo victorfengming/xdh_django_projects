@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
-from home import views, viewsUtil
+from home import views
 
 
 
@@ -24,7 +24,48 @@ from home import views, viewsUtil
 
 urlpatterns = [
 
-    url(r'^$', views.index,name="cookie_index"),
-    url(r'^verifycode/$', viewsUtil.verifycode),
-    url(r'^tmp/demo/$', views.tmp_demo,name="cookie_tmp_demo"),
+    url(r'^$', views.index,name="index"),
+    url(r'^citys$', views.citys,name="citys"),
+    # 获取城市信息的地址
+    url(r'^get/city$', views.get_city,name="get_city"),
 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
